@@ -6,15 +6,12 @@ export function getState(snake, fruit, direction) {
     const pointToDown = { x: head.x, y: head.y + 1 };
   
     return [
-      // Distance from fruit
       head.x - fruit.x,
       head.y - fruit.y,
-      // Immediate danger
       isDanger(pointToLeft, snake),
       isDanger(pointToRight, snake),
       isDanger(pointToUp, snake),
       isDanger(pointToDown, snake),
-      // Current direction
       direction === 'LEFT' ? 1 : 0,
       direction === 'RIGHT' ? 1 : 0,
       direction === 'UP' ? 1 : 0,

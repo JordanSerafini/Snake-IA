@@ -29,11 +29,9 @@ const SnakeGame = () => {
 
   async function trainModel() {
     if (data.length > 100) {
-      // Assure-toi d'avoir assez de données
       const inputs = data.map((d) => d.state);
-      const labels = data.map((d) => d.action); // Tu dois convertir cela en format catégorique si nécessaire
+      const labels = data.map((d) => d.action);
 
-      // Convertir les données en tenseurs
       const inputTensor = tf.tensor2d(inputs);
       const labelTensor = tf.tensor1d(labels, "int32");
 
@@ -51,7 +49,6 @@ const SnakeGame = () => {
     }
   }
   const updateGame = (action) => {
-    // Convertit l'indice d'action en direction
     const actions = ["UP", "DOWN", "LEFT", "RIGHT"];
     setDirection(actions[action]);
   };
@@ -62,7 +59,6 @@ const SnakeGame = () => {
         if (!gameOver && model) {
             const state = getState(snake, fruit, direction);
             const action = predictAction(state);
-            // Convertis l'action en direction et met à jour le jeu
             updateGame(action);
         }
     }, 200);
